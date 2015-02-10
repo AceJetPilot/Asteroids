@@ -120,7 +120,9 @@ public class Player extends SpaceObject {
 		}
 		
 		//screen wrap
-		wrap();
+		//wrap();
+		
+		boundries();
 	}
 	
 	
