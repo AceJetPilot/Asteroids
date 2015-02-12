@@ -1,5 +1,6 @@
 package com.Asteroids.entities;
 
+
 import java.util.ArrayList;
 
 import com.Asteroids.game.Game;
@@ -172,5 +173,5 @@ public class FlyingSaucer extends SpaceObject {
 		
 		sr.end();
 	}
-	
+
 }
