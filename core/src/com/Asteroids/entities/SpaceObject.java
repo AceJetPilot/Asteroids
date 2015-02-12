@@ -26,14 +26,29 @@ public class SpaceObject {
 	public float[] getShapeX() {return shapex;}
 	public float[] getShapeY() {return shapey;}
 	
-	/*public boolean contains(float x, float y){
-		boolean b = false;
-		for(int i = 0, j = shapex.length - 1; i < shapex.length; j = i++){
-			if((shapex[i] > y) != (shapey[j] > y) && (x < (shapex[j] - shapex[i])+ shapex[i])){
-				
+	public boolean intersects(SpaceObject other){
+		float[] sx = other.getShapeX();
+		float[] sy = other.getShapeY();
+		
+		for(int i = 0; i < sx.length; i++){
+			if(contains(sx[i], sy[i])){
+				return true;
 			}
 		}
-	}*/
+		return false;
+		
+	}
+	
+	public boolean contains(float x, float y){
+		boolean b = false;
+		for(int i = 0, j = shapex.length - 1; i < shapex.length; j = i++){
+			if((shapey[i] > y) != (shapey[j] > y) && (x < (shapex[j] - shapex[i]) * (y - shapey[i]) / (shapey[j] - shapey[i]) + shapex[i])){
+			
+				b = !b;
+			}
+		}
+		return b;
+	}
 	
 	
 	protected void wrap(){
@@ -43,7 +58,7 @@ public class SpaceObject {
 		if(y > Game.HEIGHT) y = 0;
 	}
 	
-	protected void boundries(){
+	protected void boundaries(){
 		if(x < 10) x = 10;
 		if(x > Game.WIDTH) x = Game.WIDTH - 10;
 		if(y < 10) y = 10;

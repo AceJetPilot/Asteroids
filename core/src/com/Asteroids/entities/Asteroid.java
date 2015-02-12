@@ -14,6 +14,8 @@ public class Asteroid extends SpaceObject{
 	private int numPoints;
 	private float[] dists;
 	
+	private int score;
+	
 	private boolean remove;
 	
 	public Asteroid(float x, float y, int type){
@@ -26,16 +28,19 @@ public class Asteroid extends SpaceObject{
 			numPoints = 8;
 			width = height = 12;
 			speed = MathUtils.random(70, 100);
+			score = 100;
 		}
 		else if(type == MEDIUM){
 			numPoints = 10;
 			width = height = 20;
 			speed = MathUtils.random(50, 60);
+			score = 50;
 		}
 		else if(type == LARGE){
 			numPoints = 12;
 			width = height = 40;
 			speed = MathUtils.random(20, 30);
+			score = 20;
 		}
 		
 		rotationSpeed = MathUtils.random(-1, 1);
@@ -68,6 +73,7 @@ public class Asteroid extends SpaceObject{
 	
 	public int getType(){return type;}
 	public boolean shouldRemove(){return remove;}
+	public int getScore() {return score;}
 	
 	public void update(float dt){
 		x += dx * dt;
